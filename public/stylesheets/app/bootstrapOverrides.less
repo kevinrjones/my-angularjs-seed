@@ -1,0 +1,155 @@
+@import "variables";
+
+@navbarBackground: @main-color;
+@navbarBackgroundHighlight: @main-color;
+
+@navbarText: white;
+@navbarLinkColor: white;
+@navbarLinkColorHover: white;
+@navbarLinkColorActive:white;
+
+/***************************/
+/* Boostrap overrides      */
+.navbar-fixed-bottom {
+  .navbar-inner {
+    -webkit-box-shadow: 0 1px 10px rgba(255, 255, 255, 0);
+    -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0);
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0);
+  }
+}
+
+.navbar-fixed-top .navbar-inner,
+.navbar-static-top .navbar-inner {
+  -webkit-box-shadow: 0 1px 10px rgba(255, 255, 255, 0);
+  -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0);
+}
+
+.navbar-inner {
+  padding-bottom: 0px;
+  border-bottom: 1px solid @navbarBackground;
+  background-image: linear-gradient(to bottom, @navbarBackground, @navbarBackground);
+}
+
+.navbar .nav .nav-container {
+  margin: 10px 0;
+}
+
+.navbar {
+  padding-right: 0;
+  padding-left: 0;
+  min-height: inherit;
+  background-color: @navbarBackground;
+}
+
+.navbar .nav .nav-container a,
+.navbar .nav .nav-container a:hover,
+.navbar .nav .nav-container a:focus {
+  color: white;
+  padding-right: 15px;
+}
+
+.navbar .nav .nav-container .disableLink,
+.navbar .nav .nav-container .disableLink:hover {
+  color: lightgray;
+  cursor: default;
+  text-decoration: none;
+}
+
+.navbar .nav > .active > a {
+  background-color: @navbarBackground;
+  color: white;
+  display: inline-block;
+  margin: 0 15px 0 0;
+}
+
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus{
+  background-color: rgba(0,0,0,.2);
+  color: @navbarText;
+}
+
+.navbar .nav > li {
+  font-family: Lato, 'Segoe UI', 'Segoe UI Web Regular', 'Helvetica Neue', 'BBAlpha Sans', 'S60 Sans', Arial, sans-serif;
+  font-size: 14px;
+  margin-top: 2px;
+  text-transform: none;
+}
+
+.navbar .nav .nav-icon {
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 14px;
+  width: 14px;
+}
+
+.navbar .nav .nav-icon-home {
+  background-image: url("/images/glyphicons-halflings-white.png");
+  background-position: 0px -25px;
+}
+
+.navbar .nav .nav-icon-new {
+  background-image: url("/images/glyphicons-halflings-white.png");
+  background-position: 0px -97px;
+}
+
+.navbar a,
+.navbar a:hover {
+  color: white;
+}
+
+.nav {
+  margin-left: 0;
+  list-style: none;
+}
+
+.navbar-default .navbar-brand {
+  color: white;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: white;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: white;
+}
+
+.navbar-fixed-top .navbar-inner, .navbar-fixed-bottom .navbar-inner {
+  padding-left: 0;
+  padding-right: 0;
+  border-width: 0 0 1px;
+}
+
+.navbar .brand {
+  float: left;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+
+.checkbox {
+  margin-top: 0px;
+  padding-left: 0px;
+}
+
+ul, ol {
+  padding: 0;
+  margin: 0 0 12px 25px;
+}
+
+.nav-tabs:before, .nav-pills:before, .nav-tabs:after, .nav-pills:after {
+  line-height: 0;
+}
+
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+  height: 30px;
+  border: 1px solid #cccccc;
+  padding: 4px 6px;
+  margin-bottom: 12.5px;
+  font-size: 14px;
+}
+

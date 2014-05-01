@@ -1,0 +1,187 @@
+/* ReSharper disable DeclarationIsEmpty */
+/*font-family: 'Ropa Sans', cursive;
+font-family: 'Asap', sans-serif;*/
+/*font-family: 'Ropa Sans', cursive;
+font-family: 'Asap', sans-serif;*/
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Inconsolata'), url(/public/fonts/BjAYBlHtW3CJxDcjzrnZCLrIa-7acMAeDBVuclsi6Gc.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(/public/fonts/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lato Bold'), local('Lato-Bold'), url(/public/fonts/qdgUG4U09HnJwhYI-uK18wLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Lato Black'), local('Lato-Black'), url(/public/fonts/G2uphNnNqGFMHLRsO_72ngLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Lato Italic'), local('Lato-Italic'), url(/public/fonts/RYyZNoeFgb0l7W3Vu1aSWOvvDin1pK8aKteLpeZ5c0A.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Lato Bold Italic'), local('Lato-BoldItalic'), url(/public/fonts/HkF_qI1x_noxlxhrhMQYELO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 900;
+  src: local('Lato Black Italic'), local('Lato-BlackItalic'), url(/public/fonts/VNUH7ZAcagYBWsAiBBCEY7O3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}
+/* #region HTML RESET */
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+pre code {
+  line-height: normal;
+  font-family: Consolas, 'Bitstream Vera Sans Mono', 'Courier New', Courier, monospace;
+  font-size: 13px;
+  color: #b9bdb6;
+}
+p {
+  margin: 0 0 12.5px;
+}
+em {
+  font-style: italic;
+}
+strong {
+  font-weight: bold;
+}
+html,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+body,
+button,
+input,
+select,
+textarea {
+  color: #222;
+  font-family: Lato, 'Segoe UI', 'Segoe UI Web Regular', 'Helvetica Neue', 'BBAlpha Sans', 'S60 Sans', Arial, sans-serif;
+  font-weight: 200;
+}
+/* Alter box model for consistency */
+/* ReSharper restore DeclarationIsEmpty */
+#content {
+  overflow-y: auto;
+}
+body {
+  overflow-y: hidden;
+}
+pre {
+  border: none;
+  background-color: white;
+}
+html {
+  padding: 0;
+  color: black;
+  /*background: #EFEFEF;*/
+
+}
+body {
+  font-size: 18px;
+  margin: 0 auto;
+  /*background-color: transparent;*/
+
+  font-family: Lato, 'Segoe UI', 'Segoe UI Web Regular', 'Helvetica Neue', 'BBAlpha Sans', 'S60 Sans', Arial, sans-serif;
+}
+h1,
+h2,
+h3 {
+  letter-spacing: -1px !important;
+  color: #a5c3d5;
+  text-transform: none;
+  font-size: 26px;
+}
+/* #endregion HTML RESET */
+.navbar .brand {
+  padding: 6px 30px 12px 30px;
+  margin-bottom: -8px;
+  height: 48px;
+}
+.brand .title {
+  float: left;
+  font-family: Lato, 'Segoe UI', 'Segoe UI Web Regular', 'Helvetica Neue', 'BBAlpha Sans', 'S60 Sans', Arial, sans-serif;
+  margin: 0;
+  padding: 5px 0 0 20px;
+  text-transform: capitalize;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #0072c6;
+}
+.userManager {
+  position: relative;
+  right: 0px;
+  padding: 10px;
+  border: 1px solid #0072c6;
+  background-color: white;
+}
+.userManager button {
+  width: 100%;
+}
+.userManager div {
+  min-width: 200px;
+}
+.userManager .alert {
+  margin: 5px 0 0 0;
+}
+.authentication {
+  margin: 0 auto;
+  width: 230px;
+}
+.authentication input {
+  width: 100%;
+}
+.checkbox {
+  min-height: 20px;
+}
+.checkbox.large {
+  top: -2px;
+}
+label {
+  padding-top: 5px;
+}
+#manageUserUi .registerHolder {
+  padding: 15px 0 0;
+  font-size: 12px;
+}
+.ui-datepicker {
+  width: 216px;
+  height: auto;
+  margin: 5px auto 0;
+  font: 9pt Arial, sans-serif;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+.ui-datepicker a {
+  text-decoration: none;
+}
+.ui-datepicker table {
+  width: 100%;
+}
+.hasDatepicker {
+  width: 200px;
+}

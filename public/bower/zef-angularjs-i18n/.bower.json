@@ -1,0 +1,20 @@
+{
+  "name": "zef-angularjs-i18n",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zeflasher/angularjs-i18n"
+  },
+  "dependencies": {
+    "sprintf": null
+  },
+  "homepage": "https://github.com/zeflasher/angularjs-i18n",
+  "_release": "6165bc3f68",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "6165bc3f68a0b20becc9c6ea288fef485b80909d"
+  },
+  "_source": "git://github.com/zeflasher/angularjs-i18n.git",
+  "_target": "*",
+  "_originalSource": "git://github.com/zeflasher/angularjs-i18n"
+}

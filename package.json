@@ -1,0 +1,29 @@
+{
+    "name": "my-angular-seed",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "express": "3.2.4",
+        "ejs": "*",
+        "less-middleware": "*",
+        "passport": "*",
+        "passport-google": "*",
+        "passport-google-oauth": "*",
+        "passport-local": "*",
+        "underscore": "1.4.4",
+        "mongoskin": "0.5.0",
+        "moment": "*"
+    },
+    "devDependencies": {
+        "supervisor"    :  "*"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kevinrjones/my-angular-seed"
+    },
+    "keywords": ["angular", "mongo", "mongodb"],
+    "engines": { "node": ">= 0.8.0" }
+}
