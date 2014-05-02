@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.3.0-build.2636+sha.ff03d7b
+ * @license AngularJS v1.3.0-build.2663+sha.69d96e8
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -68,7 +68,7 @@ function minErr(module) {
       return match;
     });
 
-    message = message + '\nhttp://errors.angularjs.org/1.3.0-build.2636+sha.ff03d7b/' +
+    message = message + '\nhttp://errors.angularjs.org/1.3.0-build.2663+sha.69d96e8/' +
       (module ? module + '/' : '') + code;
     for (i = 2; i < arguments.length; i++) {
       message = message + (i == 2 ? '?' : '&') + 'p' + (i-2) + '=' +
@@ -1880,6 +1880,8 @@ function setupModuleLoader(window) {
            *    configuration.
            * @description
            * Use this method to register work which needs to be performed on module loading.
+           * For more about how to configure services, see
+           * {@link providers#providers_provider-recipe Provider Recipe}.
            */
           config: config,
 
@@ -2017,7 +2019,7 @@ function setupModuleLoader(window) {
  * - `codeName` – `{string}` – Code name of the release, such as "jiggling-armfat".
  */
 var version = {
-  full: '1.3.0-build.2636+sha.ff03d7b',    // all of these placeholder strings will be replaced by grunt's
+  full: '1.3.0-build.2663+sha.69d96e8',    // all of these placeholder strings will be replaced by grunt's
   major: 1,    // package task
   minor: 3,
   dot: 0,
@@ -3232,7 +3234,7 @@ HashMap.prototype = {
  *
  * Sometimes you want to get access to the injector of a currently running Angular app
  * from outside Angular. Perhaps, you want to inject and compile some markup after the
- * application has been bootstrapped. You can do this using extra `injector()` added
+ * application has been bootstrapped. You can do this using the extra `injector()` added
  * to JQuery/jqLite elements. See {@link angular.element}.
  *
  * *This is fairly rare but could be the case if a third party library is injecting the
@@ -3364,7 +3366,7 @@ function annotate(fn, strictDi, name) {
  * minification, and obfuscation tools since these tools change the argument names.
  *
  * ## `$inject` Annotation
- * By adding a `$inject` property onto a function the injection parameters can be specified.
+ * By adding an `$inject` property onto a function the injection parameters can be specified.
  *
  * ## Inline
  * As an array of injection names, where the last item in the array is the function to call.
@@ -3401,7 +3403,7 @@ function annotate(fn, strictDi, name) {
  * @name $injector#has
  *
  * @description
- * Allows the user to query if the particular service exist.
+ * Allows the user to query if the particular service exists.
  *
  * @param {string} Name of the service to query.
  * @returns {boolean} returns true if injector has given service.
@@ -3411,8 +3413,8 @@ function annotate(fn, strictDi, name) {
  * @ngdoc method
  * @name $injector#instantiate
  * @description
- * Create a new instance of JS type. The method takes a constructor function invokes the new
- * operator and supplies all of the arguments to the constructor function as specified by the
+ * Create a new instance of JS type. The method takes a constructor function, invokes the new
+ * operator, and supplies all of the arguments to the constructor function as specified by the
  * constructor annotation.
  *
  * @param {Function} Type Annotated constructor function.
@@ -4033,7 +4035,7 @@ createInjector.$$annotate = annotate;
  * @requires $rootScope
  *
  * @description
- * When called, it checks current value of `$location.hash()` and scroll to related element,
+ * When called, it checks current value of `$location.hash()` and scrolls to the related element,
  * according to rules specified in
  * [Html5 spec](http://dev.w3.org/html5/spec/Overview.html#the-indicated-part-of-the-document).
  *
@@ -5370,6 +5372,19 @@ function $TemplateCacheProvider() {
  * * `M` - Comment: `<!-- directive: my-directive exp -->`
  *
  *
+ * #### `type`
+ * String representing the document type used by the markup. This is useful for templates where the root
+ * node is non-HTML content (such as SVG or MathML). The default value is "html".
+ *
+ * * `html` - All root template nodes are HTML, and don't need to be wrapped. Root nodes may also be
+ *   top-level elements such as `<svg>` or `<math>`.
+ * * `svg` - The template contains only SVG content, and must be wrapped in an `<svg>` node prior to
+ *   processing.
+ * * `math` - The template contains only MathML content, and must be wrapped in an `<math>` node prior to
+ *   processing.
+ *
+ * If no `type` is specified, then the type is considered to be html.
+ *
  * #### `template`
  * replace the current element with the contents of the HTML. The replacement process
  * migrates all of the attributes / classes from the old element to the new one. See the
@@ -6418,7 +6433,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
             if (jqLiteIsTextNode(directiveValue)) {
               $template = [];
             } else {
-              $template = jqLite(trim(directiveValue));
+              $template = jqLite(wrapTemplate(directive.type, trim(directiveValue)));
             }
             compileNode = $template[0];
 
@@ -6833,7 +6848,8 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
           }),
           templateUrl = (isFunction(origAsyncDirective.templateUrl))
               ? origAsyncDirective.templateUrl($compileNode, tAttrs)
-              : origAsyncDirective.templateUrl;
+              : origAsyncDirective.templateUrl,
+          type = origAsyncDirective.type;
 
       $compileNode.empty();
 
@@ -6847,7 +6863,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
             if (jqLiteIsTextNode(content)) {
               $template = [];
             } else {
-              $template = jqLite(trim(content));
+              $template = jqLite(wrapTemplate(type, trim(content)));
             }
             compileNode = $template[0];
 
@@ -6966,6 +6982,20 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
             });
           })
         });
+      }
+    }
+
+
+    function wrapTemplate(type, template) {
+      type = lowercase(type || 'html');
+      switch(type) {
+      case 'svg':
+      case 'math':
+        var wrapper = document.createElement('div');
+        wrapper.innerHTML = '<'+type+'>'+template+'</'+type+'>';
+        return wrapper.childNodes[0].childNodes;
+      default:
+        return template;
       }
     }
 
@@ -7477,12 +7507,6 @@ function $HttpProvider() {
    */
   var interceptorFactories = this.interceptors = [];
 
-  /**
-   * For historical reasons, response interceptors are ordered by the order in which
-   * they are applied to the response. (This is the opposite of interceptorFactories)
-   */
-  var responseInterceptorFactories = this.responseInterceptors = [];
-
   this.$get = ['$httpBackend', '$browser', '$cacheFactory', '$rootScope', '$q', '$injector',
       function($httpBackend, $browser, $cacheFactory, $rootScope, $q, $injector) {
 
@@ -7499,27 +7523,6 @@ function $HttpProvider() {
       reversedInterceptors.unshift(isString(interceptorFactory)
           ? $injector.get(interceptorFactory) : $injector.invoke(interceptorFactory));
     });
-
-    forEach(responseInterceptorFactories, function(interceptorFactory, index) {
-      var responseFn = isString(interceptorFactory)
-          ? $injector.get(interceptorFactory)
-          : $injector.invoke(interceptorFactory);
-
-      /**
-       * Response interceptors go before "around" interceptors (no real reason, just
-       * had to pick one.) But they are already reversed, so we can't use unshift, hence
-       * the splice.
-       */
-      reversedInterceptors.splice(index, 0, {
-        response: function(response) {
-          return responseFn($q.when(response));
-        },
-        responseError: function(response) {
-          return responseFn($q.reject(response));
-        }
-      });
-    });
-
 
     /**
      * @ngdoc service
@@ -7772,51 +7775,6 @@ function $HttpProvider() {
      *     };
      *   });
      * ```
-     *
-     * # Response interceptors (DEPRECATED)
-     *
-     * Before you start creating interceptors, be sure to understand the
-     * {@link ng.$q $q and deferred/promise APIs}.
-     *
-     * For purposes of global error handling, authentication or any kind of synchronous or
-     * asynchronous preprocessing of received responses, it is desirable to be able to intercept
-     * responses for http requests before they are handed over to the application code that
-     * initiated these requests. The response interceptors leverage the {@link ng.$q
-     * promise apis} to fulfil this need for both synchronous and asynchronous preprocessing.
-     *
-     * The interceptors are service factories that are registered with the $httpProvider by
-     * adding them to the `$httpProvider.responseInterceptors` array. The factory is called and
-     * injected with dependencies (if specified) and returns the interceptor  — a function that
-     * takes a {@link ng.$q promise} and returns the original or a new promise.
-     *
-     * ```js
-     *   // register the interceptor as a service
-     *   $provide.factory('myHttpInterceptor', function($q, dependency1, dependency2) {
-     *     return function(promise) {
-     *       return promise.then(function(response) {
-     *         // do something on success
-     *         return response;
-     *       }, function(response) {
-     *         // do something on error
-     *         if (canRecover(response)) {
-     *           return responseOrNewPromise
-     *         }
-     *         return $q.reject(response);
-     *       });
-     *     }
-     *   });
-     *
-     *   $httpProvider.responseInterceptors.push('myHttpInterceptor');
-     *
-     *
-     *   // register the interceptor via an anonymous factory
-     *   $httpProvider.responseInterceptors.push(function($q, dependency1, dependency2) {
-     *     return function(promise) {
-     *       // same as above
-     *     }
-     *   });
-     * ```
-     *
      *
      * # Security Considerations
      *
@@ -13623,7 +13581,7 @@ function $SceDelegateProvider() {
  * won't work on all browsers.  Also, loading templates from `file://` URL does not work on some
  * browsers.
  *
- * ## This feels like too much overhead for the developer?
+ * ## This feels like too much overhead
  *
  * It's important to remember that SCE only applies to interpolation expressions.
  *
@@ -15489,7 +15447,9 @@ function limitToFilter(){
  * @function
  *
  * @description
- * Orders a specified `array` by the `expression` predicate.
+ * Orders a specified `array` by the `expression` predicate. It is ordered alphabetically
+ * for strings and numerically for numbers. Note: if you notice numbers are not being sorted
+ * correctly, make sure they are actually being saved as numbers and not strings.
  *
  * @param {Array} array The array to sort.
  * @param {function(*)|string|Array.<(function(*)|string)>} expression A predicate to be
@@ -22033,7 +21993,7 @@ var ngOptionsMinErr = minErr('ngOptions');
             {name:'blue', shade:'dark'},
             {name:'yellow', shade:'light'}
           ];
-          $scope.color = $scope.colors[2]; // red
+          $scope.myColor = $scope.colors[2]; // red
         }
         </script>
         <div ng-controller="MyCntrl">
@@ -22048,37 +22008,37 @@ var ngOptionsMinErr = minErr('ngOptions');
           </ul>
           <hr/>
           Color (null not allowed):
-          <select ng-model="color" ng-options="c.name for c in colors"></select><br>
+          <select ng-model="myColor" ng-options="color.name for color in colors"></select><br>
 
           Color (null allowed):
           <span  class="nullable">
-            <select ng-model="color" ng-options="c.name for c in colors">
+            <select ng-model="myColor" ng-options="color.name for color in colors">
               <option value="">-- choose color --</option>
             </select>
           </span><br/>
 
           Color grouped by shade:
-          <select ng-model="color" ng-options="c.name group by c.shade for c in colors">
+          <select ng-model="myColor" ng-options="color.name group by color.shade for color in colors">
           </select><br/>
 
 
-          Select <a href ng-click="color={name:'not in list'}">bogus</a>.<br>
+          Select <a href ng-click="myColor = { name:'not in list', shade: 'other' }">bogus</a>.<br>
           <hr/>
-          Currently selected: {{ {selected_color:color}  }}
+          Currently selected: {{ {selected_color:myColor}  }}
           <div style="border:solid 1px black; height:20px"
-               ng-style="{'background-color':color.name}">
+               ng-style="{'background-color':myColor.name}">
           </div>
         </div>
       </file>
       <file name="protractor.js" type="protractor">
          it('should check ng-options', function() {
-           expect(element(by.binding('{selected_color:color}')).getText()).toMatch('red');
-           element.all(by.select('color')).first().click();
-           element.all(by.css('select[ng-model="color"] option')).first().click();
-           expect(element(by.binding('{selected_color:color}')).getText()).toMatch('black');
-           element(by.css('.nullable select[ng-model="color"]')).click();
-           element.all(by.css('.nullable select[ng-model="color"] option')).first().click();
-           expect(element(by.binding('{selected_color:color}')).getText()).toMatch('null');
+           expect(element(by.binding('{selected_color:myColor}')).getText()).toMatch('red');
+           element.all(by.select('myColor')).first().click();
+           element.all(by.css('select[ng-model="myColor"] option')).first().click();
+           expect(element(by.binding('{selected_color:myColor}')).getText()).toMatch('black');
+           element(by.css('.nullable select[ng-model="myColor"]')).click();
+           element.all(by.css('.nullable select[ng-model="myColor"] option')).first().click();
+           expect(element(by.binding('{selected_color:myColor}')).getText()).toMatch('null');
          });
       </file>
     </example>
@@ -22611,4 +22571,4 @@ var styleDirective = valueFn({
 
 })(window, document);
 
-!angular.$$csp() && angular.element(document).find('head').prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\\:form{display:block;}</style>');
+!window.angular.$$csp() && window.angular.element(document).find('head').prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\\:form{display:block;}</style>');
