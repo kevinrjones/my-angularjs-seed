@@ -1,5 +1,5 @@
 var data = {
-    "slips": [
+    "seed": [
         {
             "title": "Lorem ipsum",
             "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
@@ -13,7 +13,7 @@ var data = {
 
 // GET
 
-var SlipsServer = function (app, dbName, ensureLoggedIn) {
+var SeedServer = function (app, dbName, ensureLoggedIn) {
 
     var mongo = require("mongoskin");
 
@@ -34,12 +34,12 @@ var SlipsServer = function (app, dbName, ensureLoggedIn) {
 
     }
 
-    app.get('/api/slips', function (req, res) {
+    app.get('/api/seed', function (req, res) {
         checkSecurityAndExecute(req, res, function () {
             var dateFrom = new Date(Date.parse(req.query.startDate));
             console.log(dateFrom.toUTCString());
             connect(dbName, function (db) {
-                db.collection('slips').find().toArray(function (err, items) {
+                db.collection('seed').find().toArray(function (err, items) {
                     res.json([
                         {
                             title: 'some title'
@@ -54,26 +54,26 @@ var SlipsServer = function (app, dbName, ensureLoggedIn) {
     });
 
 
-//    app.get('/api/slips', function (req, res) {
-//        var slips = [];
-//        data.slips.forEach(function (slip, i) {
-//            slips.push({
+//    app.get('/api/seed', function (req, res) {
+//        var seed = [];
+//        data.seed.forEach(function (seed, i) {
+//            seed.push({
 //                id: i,
-//                title: slip.title,
-//                text: slip.text.substr(0, 50) + '...'
+//                title: seed.title,
+//                text: seed.text.substr(0, 50) + '...'
 //            });
 //        });
 //        res.json({
-//            slips: slips
+//            seed: seed
 //        });
 //    });
 
-    app.get('/api/slip/:id', function (req, res) {
+    app.get('/api/seed/:id', function (req, res) {
         checkSecurityAndExecute(req, res, function () {
             var id = req.params.id;
-            if (id >= 0 && id < data.slips.length) {
+            if (id >= 0 && id < data.seed.length) {
                 res.json({
-                    slip: data.slips[id]
+                    seed: data.seed[id]
                 });
             } else {
                 res.json(false);
@@ -81,20 +81,20 @@ var SlipsServer = function (app, dbName, ensureLoggedIn) {
         });
     });
 
-    app.post('/api/slip', function (req, res) {
+    app.post('/api/seed', function (req, res) {
         checkSecurityAndExecute(req, res, function () {
-            data.slips.push(req.body);
+            data.seed.push(req.body);
             res.json(req.body);
         });
     });
 
-    app.put('/api/slip/:id', function (req, res) {
+    app.put('/api/seed/:id', function (req, res) {
         checkSecurityAndExecute(req, res, function () {
 
             var id = req.params.id;
 
-            if (id >= 0 && id < data.slips.length) {
-                data.slips[id] = req.body;
+            if (id >= 0 && id < data.seed.length) {
+                data.seed[id] = req.body;
                 res.json(true);
             } else {
                 res.json(false);
@@ -102,13 +102,13 @@ var SlipsServer = function (app, dbName, ensureLoggedIn) {
         });
     });
 
-    app.delete('/api/slip/:id', function (req, res) {
+    app.delete('/api/seed/:id', function (req, res) {
         checkSecurityAndExecute(req, res, function () {
 
             var id = req.params.id;
 
-            if (id >= 0 && id < data.slips.length) {
-                data.slips.splice(id, 1);
+            if (id >= 0 && id < data.seed.length) {
+                data.seed.splice(id, 1);
                 res.json(true);
             } else {
                 res.json(false);
@@ -120,4 +120,4 @@ var SlipsServer = function (app, dbName, ensureLoggedIn) {
     return server;
 };
 
-module.exports = SlipsServer;
+module.exports = SeedServer;

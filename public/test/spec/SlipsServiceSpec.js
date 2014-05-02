@@ -24,7 +24,7 @@ describe("RSK.Services.Entries", function () {
         });
 
         it("returns a weeks worth of data", function () {
-            $httpBackend.when('GET', '/api/slips?startDate=2013-09-22').respond([
+            $httpBackend.when('GET', '/api/seed?startDate=2013-09-22').respond([
                 {},
                 {}
             ]);

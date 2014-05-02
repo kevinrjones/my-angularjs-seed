@@ -3,10 +3,18 @@
  */
 
 var express = require('express')
+    , favicon = require('static-favicon')
+    , bodyParser = require('body-parser')
+    , methodOverride = require('method-Override')
+    , cookieParser = require('cookie-parser')
+    , session = require('express-session')
+    , logger = require('morgan')
     , routes = require('./routes')
     , http = require('http')
     , path = require('path')
     , passport = require('passport')
+    , lessMiddleware = require('less-middleware')
+    , errorHandler  = require('errorhandler')
     , ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
 var app = express();
@@ -15,25 +23,23 @@ var app = express();
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
-app.use(express.favicon());
-app.use(express.logger('dev'));
+app.use(favicon(__dirname + '/public/favicon.ico'))
+app.use(logger('dev'));
 
-app.use(require('less-middleware')({ src: __dirname + '/public', debug: true }));
+app.use(lessMiddleware(path.join(__dirname, 'public'), { src: __dirname + '/public', debug: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(express.cookieParser());
-app.use(express.session({ secret: 'time speaking a word sheet',  cookie: { httpOnly: false } }));
+app.use(bodyParser());
+app.use(methodOverride());
+app.use(cookieParser());
+app.use(session({ secret: 'seed speaking a word seed',  cookie: { httpOnly: false } }));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(app.router);
-
 // development only
 if ('development' == app.get('env')) {
-    app.use(express.errorHandler());
+    app.use(errorHandler());
 }
 
 
