@@ -1,62 +1,59 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html>
 <head>
-    <title>Jasmine Spec Runner</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Jasmine Spec Runner v2.0.0</title>
 
-    <link rel="shortcut icon" type="image/png" href="lib/jasmine-1.3.1/jasmine_favicon.png">
-    <link rel="stylesheet" type="text/css" href="lib/jasmine-1.3.1/jasmine.css">
-    <script type="text/javascript" src="lib/jasmine-1.3.1/jasmine.js"></script>
-    <script type="text/javascript" src="lib/jasmine-1.3.1/jasmine-html.js"></script>
-    <script type="text/javascript" src="lib/sinon-1.7.1/sinon.js"></script>
+    <link rel="shortcut icon" type="image/png" href="../bower/jasmine/images/jasmine_favicon.png">
+    <link rel="stylesheet" type="text/css" href="../bower/jasmine/lib/jasmine-core/jasmine.css">
+
+    <script type="text/javascript" src="../bower/jasmine/lib/jasmine-core/jasmine.js"></script>
+    <script type="text/javascript" src="../bower/jasmine/lib/jasmine-core/jasmine-html.js"></script>
+    <script type="text/javascript" src="../bower/jasmine/lib/jasmine-core/boot.js"></script>
 
     <!-- include source files here... -->
-    <script src="../javascript/lib/jquery/jquery-2.0.0.js"></script>
-    <script src="../javascript/lib/underscore/underscore.js"></script>
-    <script src="../javascript/lib/angular/angular.js"></script>
-    <script src="../javascript/lib/angular/angular-resource.js"></script>
-    <script src="../javascript/lib/localize/localize.js"></script>
-    <script src="../javascript/timesheet/Services/library_wrappers.js"></script>
-    <script src="../javascript/timesheet/Services/slipsservice.js"></script>
-    <script src="../javascript/timesheet/Services/services.js"></script>
-    <script src="../javascript/timesheet/Entries/controllers.js"></script>
-    <script src="../javascript/timesheet/Directives/Authenticate/authenticate.js"></script>
-    <script src="../javascript/timesheet/app.js"></script>
-    <script type="text/javascript" src="lib/angular-mocks/angular-mocks.js"></script>
+    <script src="../bower/jquery/dist/jquery.js"></script>
+    <script src="../bower/underscore/underscore.js"></script>
+    <script src="../bower/angular/angular.js"></script>
+    <script src="../bower/angular-resource/angular-resource.js"></script>
+    <script src="../bower/angularjs-localizationservice/src/localize.js"></script>
+    <script src="../bower/angular-resource/angular-resource.js"></script>
+    <script src="../bower/angular-cookies/angular-cookies.js"></script>
+    <script src="../bower/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="../bower/angular-translate/angular-translate.js"></script>
+    <script src="../bower/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="../bower/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="../bower/angularjs-localizationservice/src/localize.js"></script>
+
+    <script src="../app/app.js"></script>
+    <script src="../app/config.js"></script>
+    <script src="../app/config.exceptionHandler.js"></script>
+    <script src="../app/config.route.js"></script>
+
+
+    <script src="../app/authenticate/authenticate.js"></script>
+    <script src="../app/authenticate/authenticateController.js"></script>
+
+    <script src="../app/home/homeController.js"></script>
+
+
+    <script src="../app/services/filters.js"></script>
+    <script src="../app/services/directives.js"></script>
+
+
+    <!-- common Modules -->
+    <script src="../app/common/library_wrappers.js"></script>
+    <script src="../app/common/common.js"></script>
+    <script src="../app/common/logger.js"></script>
+    <script src="../app/common/spinner.js"></script>
+
+    <script src="../app/layout/shell.js"></script>
 
     <!-- include spec files here... -->
-    <!--<script type="text/javascript" src="spec/SpecHelper.js"></script>-->
-    <script type="text/javascript" src="spec/SlipsServiceSpec.js"></script>
-    <script type="text/javascript" src="spec/ControllersSpec.js"></script>
+    <script type="text/javascript" src="spec/SpecHelper.js"></script>
+    <!--<script type="text/javascript" src="spec/SlipsServiceSpec.js"></script>-->
+    <!--<script type="text/javascript" src="spec/ControllersSpec.js"></script>-->
 
-    <script type="text/javascript">
-        (function () {
-            var jasmineEnv = jasmine.getEnv();
-            jasmineEnv.updateInterval = 1000;
-
-            var htmlReporter = new jasmine.HtmlReporter();
-
-            jasmineEnv.addReporter(htmlReporter);
-
-            jasmineEnv.specFilter = function (spec) {
-                return htmlReporter.specFilter(spec);
-            };
-
-            var currentWindowOnload = window.onload;
-
-            window.onload = function () {
-                if (currentWindowOnload) {
-                    currentWindowOnload();
-                }
-                execJasmine();
-            };
-
-            function execJasmine() {
-                jasmineEnv.execute();
-            }
-
-        })();
-    </script>
 
 </head>
 

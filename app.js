@@ -32,7 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser());
 app.use(methodOverride());
 app.use(cookieParser());
-app.use(session({ secret: 'seed speaking a word seed',  cookie: { httpOnly: false } }));
+app.use(session({ secret: 'seed seed seed seed',  cookie: { httpOnly: false } }));
 
 app.use(passport.initialize());
 app.use(passport.session());
