@@ -10,8 +10,8 @@
         "description": "Login page error"
     },
     {
-        "key": "TimeTrackingTitle",
-        "value": "Time Tracking"
+        "key": "TabTitle",
+        "value": "Tab Title"
     },
     {
         "key": "WeekCommencing",

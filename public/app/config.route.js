@@ -22,7 +22,7 @@
                 name: 'home',
                 config: {
                     url: '/',
-                    templateUrl: '/app/entries/index.html',
+                    templateUrl: '/app/home/index.html',
                     data: {
                         authenticate: true
                     }

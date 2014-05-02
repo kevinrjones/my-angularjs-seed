@@ -1,18 +1,28 @@
-<div>
-    <!--<h1 data-i18n="TimeTrackingTitle"></h1>-->
-    <h1>Home</h1>
+<div data-ng-controller="HomeController as vm">
+    <h1 data-i18n="SeedTitle"></h1>
 
     <div class="row-fluid">
-        <div class="col-md-9">
+        <div class="span9">
             <tabset>
-                <tab heading="one">
-                    Some content
+                <tab heading="{{ 'SeedReportTabTitle' | i18n }}">
+                    <!--<div>-->
+                        <!--<ts-date-picker data-date="vm.startDate" data-daily="false" id="weekly"/>-->
+                    <!--</div>-->
+                    <!--<div>-->
+                        <!--<table>-->
+                            <!--<tr data-ng-repeat="slip in vm.slips">-->
+                                <!--<td>{{ slip.title }}</td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+                    <!--</div>-->
                 </tab>
-                <tab heading="two">
-                    More Static content
+                <tab heading="{{ 'SeedTabTitle' | i18n }}">
+                    <div>
+                        <ts-date-picker data-date="vm.date" id="daily"/>
+                    </div>
                 </tab>
             </tabset>
         </div>
-        <div class="col-md-3"></div>
+        <div class="span3"></div>
     </div>
 </div>

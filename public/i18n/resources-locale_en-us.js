@@ -10,16 +10,16 @@
         "description": "Login page error"
     },
     {
-        "key": "TimeTrackingTitle",
-        "value": "Time Tracking"
+        "key": "SeedTitle",
+        "value": "Seed"
     },
     {
-        "key": "TimeTrackingTabTitle",
-        "value": "Time Tracking"
+        "key": "SeedTabTitle",
+        "value": "Seed Tab"
     },
     {
-        "key": "TimeTrackingReportTabTitle",
-        "value": "Report"
+        "key": "SeedReportTabTitle",
+        "value": "Report Tab"
     },
     {
         "key": "WeekCommencing",
