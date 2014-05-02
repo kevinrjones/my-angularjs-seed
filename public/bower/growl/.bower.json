@@ -30,6 +30,6 @@
     "commit": "f4db78000f9619f21c678edf9151ac4e12889596"
   },
   "_source": "git://github.com/ksylvest/jquery-growl.git",
-  "_target": "~1.1.5",
+  "_target": "*",
   "_originalSource": "growl"
 }
