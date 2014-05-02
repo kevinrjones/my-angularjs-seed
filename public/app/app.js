@@ -6,9 +6,6 @@
         'ngCookies',
         'common',
         'localization',
-
-        'seedServices',
-
         'ui.router',
         'ui.bootstrap']);
 

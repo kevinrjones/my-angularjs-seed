@@ -7,9 +7,9 @@ var Authentication = function (app, dbName, passport) {
         LocalStrategy = require('passport-local').Strategy;
 
     var connect = function (dbName, next) {
-        var db = mongo.db("localhost/" + dbName, {safe: true});
+        var db = mongo.db("mongodb://localhost:27017/" + dbName, {safe: true});
         next(db);
-    }
+    };
 
 
     var server = {};
