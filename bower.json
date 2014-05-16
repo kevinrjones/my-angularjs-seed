@@ -28,11 +28,8 @@
         "bootstrap": "*",
         "growl": "*",
         "jqueryui": "*",
-        "moment": "*",
         "requirejs": "*",
         "spinjs": "*",
-        "sprintf": "*",
-        "underscore": "*",
-        "zef-angularjs-i18n": "git://github.com/zeflasher/angularjs-i18n"
+        "sprintf": "*"
     }
 }

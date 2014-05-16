@@ -1,34 +1,30 @@
 // Karma configuration
-// Generated on Wed Sep 25 2013 11:07:43 GMT+0100 (GMT Daylight Time)
+// Generated on Sat May 03 2014 17:05:09 GMT+0100 (BST)
 
 module.exports = function (config) {
     config.set({
 
-        // base path, that will be used to resolve files and exclude
-        basePath: '',
+        // base path that will be used to resolve all patterns (eg. files, exclude)
+        basePath: 'public',
 
 
         // frameworks to use
+        // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
         frameworks: ['jasmine'],
 
 
         // list of files / patterns to load in the browser
         files: [
-            "public/javascript/lib/jquery/jquery-2.0.0.js",
-            "public/javascript/lib/underscore/underscore.js",
-            "public/javascript/lib/angular/angular.js",
-            "public/javascript/lib/angular/angular-resource.js",
-            "public/javascript/lib/localize/localize.js",
-            'public/javascript/timesheet/services/library_wrappers.js',
-            'public/javascript/timesheet/services/slipsservice.js',
-            'public/javascript/timesheet/services/services.js',
-            'public/javascript/timesheet/entries/**/*.js',
-            'public/javascript/timesheet/directives/**/*.js',
-            'public/javascript/timesheet/app.js',
-            'public/test/lib/angular-mocks/angular-mocks.js',
-            'public/test/lib/sinon-1.7.1/sinon.js',
-            'public/test/spec/SpecHelper.js',
-            'public/test/spec/*Spec.js'
+            'bower/angular/angular.js',
+            'bower/angular-mocks/angular-mocks.js',
+            'bower/angular-route/angular-route.js',
+            'bower/angular-resource/angular-resource.js',
+            'bower/angular-cookies/angular-cookies.js',
+            'bower/angularjs-localizationservice/src/localize.js',
+            'bower/angular-ui-router/release/angular-ui-router.js',
+            'bower/angular-bootstrap/ui-bootstrap.js',
+            'test/spec/*.js',
+            'app/**/*.js',
         ],
 
 
@@ -38,8 +34,16 @@ module.exports = function (config) {
         ],
 
 
+        // preprocess matching files before serving them to the browser
+        // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+        preprocessors: {
+
+        },
+
+
         // test results reporter to use
-        // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
+        // possible values: 'dots', 'progress'
+        // available reporters: https://npmjs.org/browse/keyword/karma-reporter
         reporters: ['progress'],
 
 
@@ -48,7 +52,7 @@ module.exports = function (config) {
 
 
         // enable / disable colors in the output (reporters and logs)
-        colors: false,
+        colors: true,
 
 
         // level of logging
@@ -60,23 +64,13 @@ module.exports = function (config) {
         autoWatch: true,
 
 
-        // Start these browsers, currently available:
-        // - Chrome
-        // - ChromeCanary
-        // - Firefox
-        // - Opera
-        // - Safari (only Mac)
-        // - PhantomJS
-        // - IE (only Windows)
-        browsers: ['Chrome'],
-
-
-        // If browser does not capture in given timeout [ms], kill it
-        captureTimeout: 60000,
+        // start these browsers
+        // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+        browsers: ['Chrome', 'PhantomJS'],
 
 
         // Continuous Integration mode
-        // if true, it capture browsers, run tests and exit
+        // if true, Karma captures browsers, runs the tests and exits
         singleRun: false
     });
 };
